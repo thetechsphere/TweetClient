@@ -11,6 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20170408033826) do
+
+  create_table "users", force: :cascade do |t|
+    t.string   "UUID",         limit: 255, null: false
+    t.string   "Username",     limit: 255, null: false
+    t.string   "Email",        limit: 255, null: false
+    t.string   "Password",     limit: 255, null: false
+    t.string   "PasswordSalt", limit: 255, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "users", ["Email"], name: "index_users_on_Email", unique: true, using: :btree
+  add_index "users", ["UUID"], name: "index_users_on_UUID", unique: true, using: :btree
+  add_index "users", ["Username"], name: "index_users_on_Username", unique: true, using: :btree
 
 end
